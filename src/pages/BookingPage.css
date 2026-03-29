@@ -1,0 +1,225 @@
+/* ========================
+   BookingPage.css
+   ======================== */
+
+.booking-page {
+  padding-top: 80px; /* Adjust based on your Navbar height */
+  background-color: #f7f9fc;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========================
+   Header Section
+   ======================== */
+.booking-header {
+  position: relative;
+  height: 350px;
+  background: url('https://placehold.co/1920x400/2c3e50/ffffff?text=Book+a+Service') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.booking-header .header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.booking-header .header-content {
+  position: relative;
+  z-index: 1;
+  padding: 0 20px;
+}
+
+.booking-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.booking-header p {
+  font-size: 1.1rem;
+  font-weight: 300;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ========================
+   Booking Form Section
+   ======================== */
+.booking-form-section {
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+
+.booking-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  max-width: 700px;
+  width: 100%;
+}
+
+.booking-container h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 2rem;
+  text-align: center;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 1rem;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group select,
+.form-group textarea {
+  padding: 12px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #374151;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.submit-booking-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+.submit-booking-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* ========================
+   Contact CTA Section
+   ======================== */
+.booking-contact-cta {
+  background-color: #2c3e50;
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.booking-contact-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.booking-contact-content h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.booking-contact-content p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.cta-btn-booking {
+  display: inline-block;
+  background-color: white;
+  color: #2c3e50;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px; /* Fully rounded */
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.cta-btn-booking:hover {
+  background-color: #e0e8f0;
+  color: #2c3e50;
+}
+
+/* ========================
+   Responsive Design
+   ======================== */
+@media (max-width: 768px) {
+  .booking-header {
+    height: 250px;
+  }
+
+  .booking-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .booking-header p {
+    font-size: 1rem;
+  }
+
+  .booking-form-section {
+    padding: 2rem 1rem;
+  }
+
+  .booking-container {
+    padding: 25px;
+  }
+
+  .booking-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .booking-contact-content h2 {
+    font-size: 2rem;
+  }
+
+  .booking-contact-content p {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,87 @@
+/* Thank You Page Styles */
+.thank-you-page {
+  font-family: 'Inter', sans-serif;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f9fc;
+  padding: 2rem;
+}
+
+.thank-you-container {
+  max-width: 600px;
+  text-align: center;
+  background-color: #fff;
+  padding: 3rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.icon-container {
+  color: #28a745;
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+  animation: scale-up 0.5s ease-out;
+}
+
+@keyframes scale-up {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.thank-you-container h1 {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  color: #0d1223;
+  margin-bottom: 1rem;
+}
+
+.thank-you-container p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.thank-you-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn-primary-thankyou,
+.btn-secondary-thankyou {
+  padding: 1rem 2rem;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary-thankyou {
+  background-color: #0d1223;
+  color: #fff;
+  border: 1px solid #0d1223;
+}
+
+.btn-primary-thankyou:hover {
+  background-color: #ff9100;
+  border-color: #ff9100;
+}
+
+.btn-secondary-thankyou {
+  background-color: transparent;
+  color: #0d1223;
+  border: 1px solid #0d1223;
+}
+
+.btn-secondary-thankyou:hover {
+  background-color: #f0f0f0;
+}
