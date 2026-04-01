@@ -46,7 +46,9 @@ const ProductPage = () => {
 
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/api/products/");
+        const response = await fetch(
+          "https://raynatic-solar-solution-ltd-4.onrender.com/api/products",
+        );
         const data = await response.json();
 
         const mappedProducts = data.map((item) => {

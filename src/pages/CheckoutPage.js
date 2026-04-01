@@ -82,7 +82,7 @@ const CheckoutPage = () => {
       };
 
       const response = await fetch(
-        "https://annamae-perfusive-arlean.ngrok-free.dev/api/checkout",
+        "https://raynatic-solar-solution-ltd-4.onrender.com/api/checkout",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
