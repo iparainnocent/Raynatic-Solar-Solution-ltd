@@ -1,13 +1,9 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom"; // ✅ No Router here
 import "./App.css";
-
-// Import Layout Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
-
-// Import all Page Components
 import Home from "./pages/Home";
 import ServicesPage from "./pages/ServicesPage";
 import PortfolioPage from "./pages/PortfolioPage";
@@ -21,18 +17,13 @@ import Register from "./pages/Register";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminMessages from "./pages/AdminMessages";
 import BookingPage from "./pages/BookingPage";
-import ContactDashboard from "./features/contact/ContactDashboard";
-
-// Import the new CartProvider
 import { CartProvider } from "./context/CartContext";
 
 function App() {
   return (
-    // Wrap the entire application with the CartProvider
     <CartProvider>
       <Navbar />
       <main>
-        {/* The Routes component handles the navigation between pages */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<ServicesPage />} />
@@ -46,7 +37,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/booking" element={<BookingPage />} />
 
-          {/* Protected Routes for admin access */}
+          {/* Protected Routes */}
           <Route
             path="/admin"
             element={
@@ -63,16 +54,8 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/admin/contacts"
-            element={
-              <ProtectedRoute>
-                <ContactDashboard />
-              </ProtectedRoute>
-            }
-          />
 
-          {/* A catch-all route for 404 pages */}
+          {/* Catch-all */}
           <Route path="*" element={<h1>404 - Page Not Found</h1>} />
         </Routes>
       </main>

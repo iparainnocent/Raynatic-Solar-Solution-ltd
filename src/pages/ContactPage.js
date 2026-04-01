@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// Removed: import { Link } from 'react-router-dom';
 import "aos/dist/aos.css";
 import AOS from "aos";
 
@@ -23,17 +22,33 @@ const ContactPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real application, you would send this data to a backend
-    console.log("Contact Form Submitted:", formData);
-    alert("Thank you for your message! We will get back to you shortly.");
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Thank you! Your message was sent successfully.");
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        alert("Failed to send message: " + (data.message || "Try again later."));
+      }
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      alert("Network error. Please try again later.");
+    }
   };
 
   return (
@@ -44,16 +59,13 @@ const ContactPage = () => {
              ContactPage.css (Inline for self-containment)
              ======================== */
           .contact-page {
-            padding-top: 80px; /* Adjust based on Navbar height */
+            padding-top: 80px;
             background-color: #f7f9fc;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
           }
 
-          /* ========================
-             Header Section
-             ======================== */
           .contact-header {
             position: relative;
             height: 350px;
@@ -81,22 +93,6 @@ const ContactPage = () => {
             max-width: 800px;
           }
 
-          .contact-header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-          }
-
-          .contact-header p {
-            font-size: 1.1rem;
-            font-weight: 300;
-            margin: 0 auto;
-          }
-
-          /* ========================
-             Contact Form Section
-             ======================== */
           .contact-form-section {
             padding: 4rem 2rem;
             display: flex;
@@ -120,7 +116,7 @@ const ContactPage = () => {
             color: #1f2937;
             margin-bottom: 2rem;
             text-align: center;
-            border-bottom: 2px solid #ff9100; /* Accent color */
+            border-bottom: 2px solid #ff9100;
             padding-bottom: 1rem;
           }
 
@@ -144,7 +140,6 @@ const ContactPage = () => {
 
           .form-group input[type="text"],
           .form-group input[type="email"],
-          .form-group input[type="tel"],
           .form-group textarea {
             padding: 12px 15px;
             border: 1px solid #d1d5db;
@@ -158,12 +153,12 @@ const ContactPage = () => {
           .form-group input:focus,
           .form-group textarea:focus {
             outline: none;
-            border-color: #ff9100; /* Accent color on focus */
+            border-color: #ff9100;
             box-shadow: 0 0 0 3px rgba(255, 145, 0, 0.25);
           }
 
           .submit-btn {
-            background-color: #0d1223; /* Darker button */
+            background-color: #0d1223;
             color: white;
             padding: 15px 25px;
             border: none;
@@ -177,14 +172,11 @@ const ContactPage = () => {
           }
 
           .submit-btn:hover {
-            background-color: #ff9100; /* Accent color on hover */
+            background-color: #ff9100;
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(255, 145, 0, 0.3);
           }
 
-          /* ========================
-             Contact Info Section
-             ======================== */
           .contact-info-section {
             background-color: #e0e8f0;
             padding: 4rem 2rem;
@@ -213,61 +205,12 @@ const ContactPage = () => {
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
           }
 
-          .info-card svg {
-            color: #ff9100; /* Accent color for icons */
-            font-size: 3rem;
-            margin-bottom: 1rem;
-          }
-
-          .info-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #0d1223;
-            margin-bottom: 0.5rem;
-          }
-
-          .info-card p, .info-card a {
-            font-size: 1rem;
-            color: #6b7280;
-            line-height: 1.6;
-            text-decoration: none;
-          }
-
-          .info-card a:hover {
-            color: #ff9100;
-          }
-
-          /* ========================
-             Responsive Adjustments
-             ======================== */
           @media (max-width: 768px) {
-            .contact-header {
-              height: 250px;
-            }
-            .contact-header h1 {
-              font-size: 2.5rem;
-            }
-            .contact-header p {
-              font-size: 1rem;
-            }
-            .contact-form-section {
-              padding: 2.5rem 1rem;
-            }
-            .contact-container {
-              padding: 25px;
-            }
-            .contact-container h2 {
-              font-size: 1.5rem;
-            }
-            .contact-info-section {
-              padding: 2.5rem 1rem;
-            }
-            .contact-info-grid {
-              grid-template-columns: 1fr;
-            }
-            .info-card {
-              padding: 1.5rem;
-            }
+            .contact-header { height: 250px; }
+            .contact-form-section { padding: 2.5rem 1rem; }
+            .contact-container { padding: 25px; }
+            .contact-info-section { padding: 2.5rem 1rem; }
+            .contact-info-grid { grid-template-columns: 1fr; }
           }
         `}
       </style>
@@ -275,10 +218,7 @@ const ContactPage = () => {
       <div className="contact-page">
         <header className="contact-header" data-aos="fade-in">
           <div className="header-overlay"></div>
-          <div className="header-content">
-           
-            
-          </div>
+          <div className="header-content"></div>
         </header>
 
         <section className="contact-form-section">
@@ -346,78 +286,27 @@ const ContactPage = () => {
           <p>You can also reach us directly through the following channels:</p>
           <div className="contact-info-grid">
             <div className="info-card" data-aos="fade-up" data-aos-delay="100">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                width="48px"
-                height="48px"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48px" height="48px">
                 <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
               </svg>
               <h3>Phone & WhatsApp</h3>
-              <p>
-                <a href="tel:+254791755862">+254 791755862</a>
-              </p>
-              <p>
-                WhatsApp:{" "}
-                <a
-                  href="https://wa.me/254711622650"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  +254 791755862
-                </a>
-              </p>
+              <p><a href="tel:+254791755862">+254 791755862</a></p>
+              <p>WhatsApp: <a href="https://wa.me/254711622650" target="_blank" rel="noopener noreferrer">+254 791755862</a></p>
             </div>
             <div className="info-card" data-aos="fade-up" data-aos-delay="200">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                width="48px"
-                height="48px"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48px" height="48px">
                 <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
               </svg>
               <h3>Email</h3>
-              <p>
-                <a href="mailto:darrownzau19@gmail.com">
-                  darrownzau19@gmail.com
-                </a>
-              </p>
+              <p><a href="mailto:darrownzau19@gmail.com">darrownzau19@gmail.com</a></p>
             </div>
             <div className="info-card" data-aos="fade-up" data-aos-delay="300">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                width="48px"
-                height="48px"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48px" height="48px">
                 <path d="M7.8 2h8.4C17.37 2 19 3.63 19 5.8v12.4c0 2.17-1.63 3.8-3.8 3.8H7.8C5.63 22 4 20.37 4 18.2V5.8C4 3.63 5.63 2 7.8 2zM12 17.5c-2.48 0-4.5-2.02-4.5-4.5s2.02-4.5 4.5-4.5 4.5 2.02 4.5 4.5-2.02 4.5-4.5 4.5zm5-9.5c.83 0 1.5-.67 1.5-1.5S17.83 6 17 6s-1.5.67-1.5 1.5.67 1.5 1.5 1.5z" />
               </svg>
               <h3>Social Media</h3>
-              <p>
-                Facebook:{" "}
-                <a
-                  href="https://www.facebook.com/High-tech-Solar-Solutions-Accessories-Ltd"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Raynetic SOLAR Solutions limited
-                </a>
-              </p>
-              <p>
-                Instagram:{" "}
-                <a
-                  href="https://www.instagram.com/hightech_solar_solution"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Drrow Kimanthi Nzau
-                </a>
-              </p>
+              <p>Facebook: <a href="https://www.facebook.com/High-tech-Solar-Solutions-Accessories-Ltd" target="_blank" rel="noopener noreferrer">Raynetic SOLAR Solutions limited</a></p>
+              <p>Instagram: <a href="https://www.instagram.com/hightech_solar_solution" target="_blank" rel="noopener noreferrer">Drrow Kimanthi Nzau</a></p>
             </div>
           </div>
         </section>
