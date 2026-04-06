@@ -225,13 +225,45 @@ Total: KSh ${total.toLocaleString()}`;
               </div>
 
               {formData.paymentMethod === "mpesa" ? (
-                <button
-                  type="button"
-                  className="place-order-btn"
-                  onClick={handleMpesaCheckout}
-                >
-                  Place Order via M-Pesa
-                </button>
+                <>
+                  <button
+                    type="button"
+                    className="place-order-btn"
+                    onClick={handleMpesaCheckout}
+                  >
+                    Place Order via M-Pesa
+                  </button>
+
+                  {/* M-Pesa Paybill Instructions */}
+                  <div
+                    style={{
+                      marginTop: "20px",
+                      padding: "15px",
+                      backgroundColor: "#fff3cd",
+                      border: "1px solid #ffeeba",
+                      borderRadius: "8px",
+                      color: "#856404",
+                    }}
+                  >
+                    <h4 style={{ marginBottom: "10px" }}>
+                      Manual M-Pesa Payment Option
+                    </h4>
+                    <p>
+                      <strong>Paybill Number:</strong> 222111
+                    </p>
+                    <p>
+                      <strong>Account Number:</strong> 71162
+                    </p>
+                    <p>
+                      <strong>Account Name:</strong> Raynetic Solar Solutions
+                      Limited
+                    </p>
+                    <p style={{ marginTop: "10px", fontSize: "0.9rem" }}>
+                      After payment, you can confirm your order via WhatsApp or
+                      wait for automatic confirmation.
+                    </p>
+                  </div>
+                </>
               ) : (
                 <button
                   type="button"
@@ -306,3 +338,4 @@ Total: KSh ${total.toLocaleString()}`;
 };
 
 export default CheckoutPage;
+
