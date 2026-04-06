@@ -102,7 +102,9 @@
   color: #c0c0c0;
 }
 
-/* Responsive styles */
+/* ============================= */
+/* ✅ ORIGINAL RESPONSIVE */
+/* ============================= */
 @media screen and (max-width: 768px) {
   .footer-container {
     flex-direction: column;
@@ -117,5 +119,54 @@
 
   .newsletter-form {
     width: 100%;
+  }
+}
+
+/* ============================= */
+/* ✅ NEW MOBILE FIXES (SAFE ADD) */
+/* ============================= */
+@media screen and (max-width: 768px) {
+
+  /* Prevent text cutting */
+  .footer-column a,
+  .footer-column h4,
+  .newsletter-column p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Fix newsletter layout */
+  .newsletter-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .newsletter-form input {
+    border-radius: 4px;
+    width: 100%;
+  }
+
+  .newsletter-form button {
+    border-radius: 4px;
+    width: 100%;
+  }
+
+  /* Fix icons wrapping */
+  .social-icons-footer {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  /* Improve readability */
+  .footer-column h4 {
+    font-size: 1.2rem;
+  }
+
+  .footer-column a {
+    font-size: 0.95rem;
+  }
+
+  .newsletter-column p {
+    font-size: 0.85rem;
   }
 }
